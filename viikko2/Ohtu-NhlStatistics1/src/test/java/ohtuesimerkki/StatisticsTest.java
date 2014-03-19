@@ -13,17 +13,17 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * @author Julppu
+ * @author Juha Lindqvist
  */
 public class StatisticsTest {
-    
+    Player player;
     Statistics stats;
     Reader readerStub = new Reader() {
 
         public List<Player> getPlayers() {
             ArrayList<Player> players = new ArrayList<Player>();
 
-            players.add(new Player("Semenko", "EDM", 4, 12));
+            players.add(new Player("Semenko", "EDM", 4,  12));
             players.add(new Player("Lemieux", "PIT", 45, 54));
             players.add(new Player("Kurri",   "EDM", 37, 53));
             players.add(new Player("Yzerman", "DET", 42, 56));
@@ -34,6 +34,7 @@ public class StatisticsTest {
     };
     
     public StatisticsTest() {
+        stats = new Statistics(readerStub);
     }
     
     @BeforeClass
@@ -57,14 +58,17 @@ public class StatisticsTest {
      */
     @Test
     public void testSearch() {
-        System.out.println("search");
-        String name = "";
-        Statistics instance = null;
-        Player expResult = null;
-        Player result = instance.search(name);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        player = stats.search("Kurri");
+        assertEquals(player.getName(), "Kurri");
+    }
+    
+    /**
+     * Test of search method, of class Statistics.
+     */
+    @Test
+    public void testSearchPlayerNotFound() {
+        player = stats.search("Selänne");
+        assertEquals(player, null);
     }
 
     /**
@@ -72,14 +76,17 @@ public class StatisticsTest {
      */
     @Test
     public void testTeam() {
-        System.out.println("team");
-        String teamName = "";
-        Statistics instance = null;
-        List expResult = null;
-        List result = instance.team(teamName);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<Player> team = stats.team("EDM");
+        assertEquals(team.size(), 3);
+    }
+    
+    /**
+     * Test of team method, of class Statistics.
+     */
+    @Test
+    public void testTeamNotFound() {
+        List<Player> team = stats.team("JOK");
+        assertEquals(team.size(), 0);
     }
 
     /**
@@ -87,13 +94,8 @@ public class StatisticsTest {
      */
     @Test
     public void testTopScorers() {
-        System.out.println("topScorers");
-        int howMany = 0;
-        Statistics instance = null;
-        List expResult = null;
-        List result = instance.topScorers(howMany);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        player = stats.search("Gretzky");
+        List<Player> top = stats.topScorers(1);
+        assertEquals(player, top.get(0));
     }
 }
