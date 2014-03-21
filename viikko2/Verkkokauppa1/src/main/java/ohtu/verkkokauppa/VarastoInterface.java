@@ -2,7 +2,7 @@
 package ohtu.verkkokauppa;
 
 /**
- * @author Julppu
+ * @author Juha Lindqvist
  */
 public interface VarastoInterface {
     Tuote haeTuote(int id);
