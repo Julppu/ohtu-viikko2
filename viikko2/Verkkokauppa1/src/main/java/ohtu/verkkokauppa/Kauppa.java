@@ -34,15 +34,15 @@ public class Kauppa {
     }
 
     public void lisaaKoriinDuplicate(int id) {
-        if (true)
+        if (true) {
         if (varasto.saldo(id)>0) {
             Tuote t = varasto.haeTuote(id);
             ostoskori.lisaa(t);
             varasto.otaVarastosta(t);
         }
         }
-        for (int i=0;i>1;i++)
-        for (int j=0;j>1;j++)
+        for (int i=0;i>1;i++);
+        for (int j=0;j>1;j++);
     }
     
 
