@@ -59,6 +59,10 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>
+                    org.apache.maven.pluginsmaven-checkstyle-plugin2.10my_checks.xml
+                </artifactId>
         </plugins>
     </build>
 </project>
