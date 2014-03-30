@@ -11,8 +11,9 @@
     
     <context:annotation-config />
     <context:component-scan base-package="ohtu" />  
-    
+
     <bean id="dao" class="ohtu.data_access.FileUserDAO" scope="prototype">
+        <constructor-arg type="java.lang.String" value="users.txt" />
     </bean>
 
     <bean id="io" class="ohtu.io.ConsoleIO" scope="prototype">
@@ -23,6 +24,7 @@
     </bean>
 
     <bean id="app" class="ohtu.App" scope="prototype">
-        <constructor-arg ref="io" ref="auth" />
+        <constructor-arg ref="io" />
+        <constructur-arf ref="auth" />
     </bean>
 </beans>
