@@ -40,7 +40,12 @@ public class AuthenticationService {
 
     private boolean invalid(String username, String password) {
         // validity check of username and password
-
-        return false;
+        if (username.length() >= 3) {
+            if (userDao.findByName(username) == null) {
+                if (password.length() > 8 && password.contains("\\d"))
+                    return false;
+            }
+        }
+        return true;
     }
 }
