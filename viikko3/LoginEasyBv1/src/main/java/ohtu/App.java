@@ -16,6 +16,13 @@ public class App {
         this.auth = auth;
     }
 
+    public static void main(String[] args) {
+        ApplicationContext ctx = new FileSystemXmlApplicationContext("src/main/resources/spring-context.xml");
+
+        App application = ctx.getBean(App.class);
+        application.run();
+    }
+
     public String[] ask() {
         String[] userPwd = new String[2];
         userPwd[0] = io.readLine("username:");
