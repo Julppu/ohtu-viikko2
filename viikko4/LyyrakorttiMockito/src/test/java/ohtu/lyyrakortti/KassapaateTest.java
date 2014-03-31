@@ -45,4 +45,22 @@ public class KassapaateTest {
         verify(kortti, times(1)).getSaldo();
         verify(kortti, times(0)).osta(anyInt());
     }
+    
+    @Test
+    public void kortilleVoiLadata() {
+        when(kortti.getSaldo()).thenReturn(15);
+        kassa.lataa(kortti, 5);
+
+        verify(kortti, times(1)).lataa(5);
+        verify(kortti, times(0)).getSaldo();
+    }
+
+    @Test
+    public void korttilleEiVoiLadataNegatiivista() {
+        when(kortti.getSaldo()).thenReturn(10);
+        kassa.lataa(kortti, -5);
+
+        verify(kortti, times(0)).lataa(-5);
+        verify(kortti, times(0)).getSaldo();
+    }
 }
