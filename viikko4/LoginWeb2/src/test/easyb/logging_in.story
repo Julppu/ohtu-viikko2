@@ -10,7 +10,7 @@ scenario "user can login with correct password", {
         driver = new HtmlUnitDriver();
         driver.get("http://localhost:8090");
         element = driver.findElement(By.linkText("login"));       
-        element.click();       
+        element.click();
     }
 
     when 'a valid username and password are given', {
